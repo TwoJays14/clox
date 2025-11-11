@@ -44,7 +44,7 @@ Literal literal_string_create(char* string) {
   return literal_string;
 };
 
-Literal literal_char_create(char character) {
+Literal literal_char_create(const char character) {
   Literal literal_character;
 
   literal_character.type = LIT_CHAR;

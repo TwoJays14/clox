@@ -16,9 +16,7 @@ typedef enum TokenType {
   IDENTIFIER, STRING, NUMBER,
 
   // Keywords
-  AND, CLASS, ELSE, FALSE, FUN, FOR, IF, NIL, OR, PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE,
-
-  EOF
+  AND, CLASS, ELSE, FALSE, FUN, FOR, IF, NIL, OR, PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE, EOF1
 } TokenType;
 
 typedef struct Literal {

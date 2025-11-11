@@ -23,7 +23,7 @@ TokenList* scanTokens(Scanner* scanner) {
   }
 
   // if so add EOF token to tokenList and return the list
-  token_list_append(scanner->tokenList, token_create(EOF, "EOF", literal_none_create(), scanner->line));
+  addToken(scanner, token_create(EOF1, "EOF", literal_none_create(), scanner->line));
 
   return scanner->tokenList;
 };
@@ -93,8 +93,9 @@ void scanToken(Scanner* scanner) {
       const Token less_token = token_create(LESS, extractLexeme(scanner), literal_none_create(), scanner->line);
       addToken(scanner, less_token);
       break;
-    default:
-      printf("Unexpected character");
+    case '\n':
+      scanner->line += 1;
+      break;
   }
 };
 
@@ -133,7 +134,7 @@ Scanner* scanner_init(const char* source, Arena* arena) {
 };
 
 bool isAtFileEnd(const Scanner* scanner) {
-  return scanner->current >= strlen(scanner->source);
+  return scanner->current >= (int)strlen(scanner->source);
 };
 
 char advance(Scanner* scanner) {

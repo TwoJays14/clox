@@ -1,20 +1,18 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "scanner.h"
 #include "libs/arena/arena.h"
 
 int main() {
-  Arena* arena = arena_create(1024);
-
-  char* str1 = arena_alloc(arena, 6);
-  strcpy(str1, "class");
-
-  char* str2 = arena_alloc(arena, 7);
-  strcpy(str2, "Person");
-
-  printf("str1: %s\n", str1);
-  printf("str2: %s\n", str2);
-  printf("Arena used: %zu / %zu bytes\n", arena->offset, arena->capacity);
-  arena_free(arena);
+  printf("> ");
+  char line[100];
+  scanf("%s", &line);
+  Arena* arena = arena_create(1048 * 1048);
+  Scanner* scanner = scanner_init(line, arena);
+  const TokenList* token_list = scanTokens(scanner);
+  for (int i = 0; i <= token_list->count - 1; i++) {
+    printf("%s", token_list->tokens[i].lexeme);
+  }
   return 0;
 }

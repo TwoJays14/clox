@@ -16,10 +16,7 @@ typedef struct Scanner {
   int line;
 } Scanner;
 
-// public methods
 TokenList* scanTokens(Scanner* scanner);
-
-// private methods;
 Scanner* scanner_init(const char* source, Arena* arena);
 void scanToken(Scanner* scanner);
 void addToken(const Scanner* scanner, Token token);
