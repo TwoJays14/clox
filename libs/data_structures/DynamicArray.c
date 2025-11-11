@@ -13,8 +13,8 @@ TokenList* token_list_create(const size_t initial_capacity) {
     return NULL;
   };
 
-  token_list->token = malloc(sizeof(Token) * initial_capacity);
-  if (token_list->token == NULL) {
+  token_list->tokens = malloc(sizeof(Token) * initial_capacity);
+  if (token_list->tokens == NULL) {
     free(token_list);
     return NULL;
   }
@@ -33,16 +33,16 @@ void token_list_append(TokenList *list, const Token token) {
 
   if (list->count >= list->capacity) {
     const size_t new_capacity = list->capacity * 2;
-    Token* new_tokens = realloc(list->token, sizeof(Token) * new_capacity);
+    Token* new_tokens = realloc(list->tokens, sizeof(Token) * new_capacity);
     if (new_tokens == NULL) {
       return;
     }
 
-    list->token = new_tokens;
+    list->tokens = new_tokens;
     list->capacity = new_capacity;
   }
 
-  list->token[list->count++] = token;
+  list->tokens[list->count++] = token;
 
 };
 
@@ -52,6 +52,6 @@ void token_list_free(TokenList* list) {
     return;
   };
 
-  free(list->token);
+  free(list->tokens);
   free(list);
 };

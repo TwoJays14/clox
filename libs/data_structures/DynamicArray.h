@@ -8,7 +8,7 @@
 #include "../token/token.h"
 
 typedef struct TokenList {
-  Token* token;
+  Token* tokens;
   size_t count;
   size_t capacity;
 } TokenList;
